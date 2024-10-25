@@ -21,4 +21,16 @@ def generate_response(intent):
         return "I'm sorry to hear that. I'm here to help, please tell me more."
     else:
         return "I see. How can I help you today?"
+if __name__ == "__main__":
+    # Simple test loop
+    while True:
+        user_input = input("You: ")
+        if user_input.lower() in ["exit", "quit"]:
+            break
+
+        intent, confidence = get_intent(user_input)
+        response = generate_response(intent)
+
+        print(f"Detected Intent: {intent} (Confidence: {confidence:.2f})")
+        print(f"Chatbot: {response}")
 ""  
