@@ -1,14 +1,12 @@
 # chatbot.py
-from transformers import pipeline, Conversation, AutoModelForCausalLM, AutoTokenizer
+from transformers import pipeline, AutoModelForCausalLM, AutoTokenizer
 
 # Load the DialoGPT model and tokenizer
 model_name = "microsoft/DialoGPT-medium"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForCausalLM.from_pretrained(model_name)
 
-# Initialize text-generation pipeline
-nlp_chatbot = pipeline("text-generation", model=model, tokenizer=tokenizer)
-
+# Custom function to generate a response using the model
 def chat_with_bot(user_input):
     """
     Chat with the bot using text generation from DialoGPT.
@@ -19,14 +17,16 @@ def chat_with_bot(user_input):
     response = tokenizer.decode(reply_ids[:, inputs.shape[-1]:][0], skip_special_tokens=True)
     return response
 
+# Main program loop
 if __name__ == "__main__":
     print("Chatbot is ready! Type 'exit' to end the conversation.")
     while True:
+        # Prompt the user for input
         user_input = input("You: ")
         if user_input.lower() in ["exit", "quit"]:
             print("Goodbye!")
             break
 
+        # Generate a response from the chatbot
         bot_response = chat_with_bot(user_input)
         print(f"Bot: {bot_response}")
-
