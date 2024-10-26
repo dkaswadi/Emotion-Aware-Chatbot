@@ -17,13 +17,17 @@ nltk.download('punkt')
 nltk.download('stopwords')
 
 def chatbot_conversation():
-    print("Chatbot is running. Say 'goodbye' to exit.")
+    print("Chatbot is running. Say 'goodbye', 'exit', or 'stop' to end the conversation.")
+    
     while True:
         user_input = listen_to_user()
         print(f"Recognized input: {user_input}")
 
+        # Define exit keywords
+        exit_keywords = ["goodbye", "exit", "quit", "stop", "bye", "see you"]
+
         # Check if the user wants to end the conversation
-        if user_input.lower() in ["goodbye", "exit", "quit", "stop"]:
+        if any(keyword in user_input.lower() for keyword in exit_keywords):
             print("Chatbot: Goodbye! Have a great day!")
             speak_response("Goodbye! Have a great day!")
             break
