@@ -69,13 +69,7 @@ def chat_with_bot():
         print(f"You: {user_input}")
 
         # Identify the intent of the user input
-def get_intent(user_input):
-    user_input = user_input.lower()
-    for index, row in intent_data.iterrows():
-        if row['text'].lower() in user_input:
-            return row['label']  # Return the corresponding label
-    return "default"  # Fallback if no intent is matched
-
+        intent = get_intent(user_input)  # Make sure to call this function here
         print(f"DEBUG: Identified intent: {intent}")
 
         if intent == "exit":
@@ -84,13 +78,7 @@ def get_intent(user_input):
             break
 
         # Generate a response based on the input
-def generate_response(user_input):
-    intent = get_intent(user_input)
-    for item in conversation_data:
-        if intent in item['prompt'].lower():
-            return item['response']
-    return "I'm not sure how to respond to that."
-
+        bot_response = generate_response(user_input)  # Ensure this line is correct
         print(f"Bot: {bot_response}")
         
         # Speak the generated response
