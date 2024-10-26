@@ -1,15 +1,11 @@
-
 from transformers import pipeline
 
 # Load a pre-trained text generation model (like GPT-2)
 chatbot = pipeline("text-generation", model="gpt2")
 
 def generate_response(user_input):
-    # Create a conversation object and pass the user input
-    conversation = Conversation(user_input)
-    
-    # Generate a response based on the context
-    response = chatbot(conversation)
+    # Generate a response directly from the user input
+    response = chatbot(user_input, max_length=50, num_return_sequences=1)
     
     # Extract and return the generated response text
     return response[0]["generated_text"]
@@ -25,4 +21,3 @@ def generate_emotion_aware_response(user_input, detected_emotion):
         response = generate_response(user_input)
     
     return response
-
