@@ -1,8 +1,8 @@
 from transformers import pipeline
 from preprocess import preprocess_input, detect_intent
 
-# Load a pre-trained DialoGPT model for conversation
-chatbot = pipeline("text-generation", model="microsoft/DialoGPT-medium")
+# Load a larger pre-trained DialoGPT model for conversation
+chatbot = pipeline("text-generation", model="microsoft/DialoGPT-large")
 
 def generate_response(user_input):
     # Generate a response directly from the user input with padding and truncation
