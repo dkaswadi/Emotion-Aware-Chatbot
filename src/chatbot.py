@@ -87,11 +87,11 @@ def chat_with_bot():
 # Intent recognition function
 def get_intent(user_input):
     user_input = user_input.lower()  # Normalize input to lowercase
-    print(f"DEBUG: User Input for Intent Recognition: {user_input}")  # Add this line
+    print(f"DEBUG: User Input for Intent Recognition: {user_input}")  # Debug line
     for index, row in intent_data.iterrows():
-        print(f"DEBUG: Checking intent: {row['test'].lower()}")  # Adjusted to 'test'
+        print(f"DEBUG: Checking intent: {row['test'].lower()}")  # Debug line
         if row['test'].lower() in user_input:
-            print(f"DEBUG: Matched intent: {row['label']}")  # Add this line
+            print(f"DEBUG: Matched intent: {row['label']}")  # Debug line
             return row['label']  # Return the corresponding label
     return "default"  # Fallback if no intent is matched
 
@@ -99,9 +99,10 @@ def get_intent(user_input):
 def generate_response(user_input):
     intent = get_intent(user_input)  # Call to get_intent to get the current intent
     print(f"DEBUG: Intent for response generation: {intent}")  # Debugging line
+
     for item in conversation_data:
-        # Check if the intent matches the prompt (adjusted to match correctly)
-        if item['prompt'].lower() in user_input.lower():  # Match based on user input
+        # Check if the intent matches the prompt
+        if intent == item['prompt'].lower() or intent in item['prompt'].lower():
             return item['response']
     return "I'm not sure how to respond to that."  # Default response if no match is found
 
