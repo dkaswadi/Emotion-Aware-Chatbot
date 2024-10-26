@@ -19,4 +19,3 @@ def find_answer(question):
         return faq_data[close_match[0]]
     else:
         return "I'm not sure about that, but I can try to help with something else!"
-
