@@ -1,5 +1,7 @@
 import speech_recognition as sr
 import pyttsx3
+import sounddevice as sd
+import numpy as np
 from nlp_model import generate_response, get_intent
 
 # Initialize the voice engine for TTS (Text-to-Speech)
@@ -10,22 +12,32 @@ def speak(text):
     engine.say(text)
     engine.runAndWait()
 
-# Initialize the speech recognizer for Voice-to-Text
+# Initialize the speech recognizer for Voice-to-Text using sounddevice
 def listen_to_speech():
     recognizer = sr.Recognizer()
-    with sr.Microphone() as source:
-        print("Listening...")
-        recognizer.adjust_for_ambient_noise(source, duration=1)  # Adjust for background noise
-        audio = recognizer.listen(source)
+    sample_rate = 16000  # Set the sample rate (e.g., 16kHz)
+    duration = 5  # Duration for listening (in seconds)
 
-        try:
-            # Recognize speech using Google's recognizer
-            text = recognizer.recognize_google(audio)
-            return text
-        except sr.UnknownValueError:
-            return "Sorry, I could not understand that."
-        except sr.RequestError:
-            return "Please check your internet connection."
+    print("Listening...")
+
+    try:
+        # Record audio using sounddevice
+        audio_data = sd.rec(int(sample_rate * duration), samplerate=sample_rate, channels=1, dtype='int16')
+        sd.wait()  # Wait for the recording to finish
+
+        # Convert the audio data to a format that SpeechRecognition can use
+        audio = sr.AudioData(audio_data.tobytes(), sample_rate, 2)
+        
+        # Recognize the speech using Google's recognizer
+        text = recognizer.recognize_google(audio)
+        return text
+
+    except sr.UnknownValueError:
+        return "Sorry, I could not understand that."
+    except sr.RequestError:
+        return "Please check your internet connection."
+    except Exception as e:
+        return f"Error: {str(e)}"
 
 # Function to get user input (text or voice)
 def get_user_input():
