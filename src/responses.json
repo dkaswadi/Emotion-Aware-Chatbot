@@ -33,6 +33,11 @@
         "You're very welcome!",
         "Happy to help!",
         "Anytime! Let me know if there's anything else you need."
+    ],
+    "fear_of_school": [
+        "It is okay to be scared. It is a new environment afterall.",
+        "I can imagine. Going to Primary School is a huge change in your life.",
+        "Yes, leaving your kindergarten and going to a bigger school can be scary."
     ]
 }
 
