@@ -83,9 +83,3 @@ def chat_with_bot():
 if __name__ == "__main__":
     print("DEBUG: Starting main()")
     chat_with_bot()
-
-from nlp_model import generate_response, get_intent
-
-def chat_with_bot():
-    # Chatbot conversation logic using trained models
-    # ...
