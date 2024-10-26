@@ -1,1 +1,38 @@
+{
+    "greeting": [
+        "Hello there! How can I help you today?",
+        "Hi! What would you like to talk about?",
+        "Hey! How's it going?",
+        "Hello! I'm here to chat, what's on your mind?",
+        "Hi! Nice to see you."
+    ],
+    "happy": [
+        "I'm so glad you're happy! What made your day so great?",
+        "That sounds amazing! Keep smiling!",
+        "Yay! Tell me more about it.",
+        "That's wonderful! I love hearing happy stories.",
+        "Great! Keep spreading the positivity."
+    ],
+    "sad": [
+        "I'm sorry you're feeling sad. Do you want to talk about it?",
+        "It's okay to feel sad sometimes. I'm here to listen.",
+        "I'm here for you. Take your time.",
+        "I understand. Talking about it might help.",
+        "I care about you. Let me know if you want to share anything."
+    ],
+    "anger": [
+        "It's okay to feel angry sometimes. I'm here to listen if you want to vent.",
+        "Anger can be tough. Take a deep breath and tell me what happened.",
+        "I'm sorry you're feeling angry. Do you want to talk about it?",
+        "I'm here to help you through this. What's bothering you?",
+        "Let's try to find a way to calm down. What happened?"
+    ],
+    "thank_you": [
+        "You're welcome! I'm always here to help.",
+        "No problem at all!",
+        "You're very welcome!",
+        "Happy to help!",
+        "Anytime! Let me know if there's anything else you need."
+    ]
+}
 
