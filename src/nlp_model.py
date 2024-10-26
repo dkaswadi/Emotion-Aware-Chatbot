@@ -53,3 +53,42 @@ if __name__ == "__main__":
     print(f"Identified Intent: {intent}")
     bot_response = generate_response(test_message)
     print(f"Bot: {bot_response}")
+
+import pandas as pd
+
+def load_intent_data(file_path="data/intent_data.csv"):
+    """
+    Load intent data from a CSV file.
+    
+    Parameters:
+    file_path (str): Path to the intent data CSV file.
+
+    Returns:
+    pd.DataFrame: Loaded intent data as a DataFrame.
+    """
+    intent_data = pd.read_csv(file_path)
+    return intent_data
+
+# Example usage:
+intent_data = load_intent_data()
+print(intent_data.head())  # Display the first few rows of the intent data
+
+import json
+
+def load_conversational_data(file_path="data/conversational_data.json"):
+    """
+    Load conversational data from a JSON file.
+    
+    Parameters:
+    file_path (str): Path to the conversational data JSON file.
+
+    Returns:
+    list: List of conversation pairs (prompt and response).
+    """
+    with open(file_path, "r") as json_file:
+        conversational_data = json.load(json_file)
+    return conversational_data
+
+# Example usage:
+conversation_data = load_conversational_data()
+print(conversation_data[:5])  # Display the first few conversation pairs
