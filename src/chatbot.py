@@ -17,14 +17,22 @@ nltk.download('punkt')
 nltk.download('stopwords')
 
 def chatbot_conversation():
-    user_input = listen_to_user()
-    print(f"Recognized input: {user_input}")
+    print("Chatbot is running. Say 'goodbye' to exit.")
+    while True:
+        user_input = listen_to_user()
+        print(f"Recognized input: {user_input}")
 
-    detected_emotion = detect_emotion_from_text(user_input)
-    response = generate_emotion_aware_response(user_input, detected_emotion)
-    print(f"Chatbot response: {response}")
+        # Check if the user wants to end the conversation
+        if user_input.lower() in ["goodbye", "exit", "quit", "stop"]:
+            print("Chatbot: Goodbye! Have a great day!")
+            speak_response("Goodbye! Have a great day!")
+            break
 
-    speak_response(response)
+        detected_emotion = detect_emotion_from_text(user_input)
+        response = generate_emotion_aware_response(user_input, detected_emotion)
+        print(f"Chatbot response: {response}")
+
+        speak_response(response)
 
 if __name__ == "__main__":
     chatbot_conversation()
