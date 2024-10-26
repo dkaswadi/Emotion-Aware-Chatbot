@@ -1,4 +1,6 @@
 import sys
+print(sys.path)  # To verify that your 'src' directory is in the path
+
 import os
 
 # Adding the `src` directory to the system path for module imports
