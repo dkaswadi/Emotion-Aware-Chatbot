@@ -45,3 +45,55 @@ def main():
 
 if __name__ == "__main__":
     main()
+import speech_recognition as sr
+import pyttsx3
+from transformers import pipeline, AutoModelForCausalLM, AutoTokenizer
+
+# Initialize the voice engine for TTS
+def speak(text):
+    engine = pyttsx3.init()
+    engine.say(text)
+    engine.runAndWait()
+
+# Initialize the speech recognizer
+def listen_to_speech():
+    recognizer = sr.Recognizer()
+    with sr.Microphone() as source:
+        print("Listening...")
+        recognizer.adjust_for_ambient_noise(source)  # To reduce noise interference
+        audio = recognizer.listen(source)
+
+        try:
+            # Recognize speech using Google's recognizer
+            text = recognizer.recognize_google(audio)
+            return text
+        except sr.UnknownValueError:
+            return "Sorry, I could not understand that."
+        except sr.RequestError:
+            return "Please check your internet connection."
+
+# NLP setup
+model_name = "microsoft/DialoGPT-medium"
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+model = AutoModelForCausalLM.from_pretrained(model_name)
+
+# Chatbot conversation loop
+def chat_with_bot():
+    while True:
+        # Get user input via voice
+        user_input = listen_to_speech()
+        if "exit" in user_input.lower():
+            speak("Goodbye!")
+            break
+
+        print(f"You: {user_input}")
+        # Generate response using NLP model
+        inputs = tokenizer.encode(user_input + tokenizer.eos_token, return_tensors="pt")
+        reply_ids = model.generate(inputs, max_length=100, pad_token_id=tokenizer.eos_token_id)
+        bot_response = tokenizer.decode(reply_ids[:, inputs.shape[-1]:][0], skip_special_tokens=True)
+
+        print(f"Bot: {bot_response}")
+        speak(bot_response)
+
+if __name__ == "__main__":
+    chat_with_bot()
