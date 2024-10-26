@@ -1,17 +1,15 @@
 import sounddevice as sd
 import soundfile as sf
-import numpy as np
 import speech_recognition as sr
 
 # Define recording parameters
 SAMPLE_RATE = 16000  # Sample rate for the microphone input
-DURATION = 5         # Maximum recording duration in seconds
+DURATION = 8         # Maximum recording duration in seconds
 
 def listen_to_user():
-    # Record audio with sounddevice
     print("I'm listening... Please speak.")
     try:
-        # Record the audio
+        # Record audio with sounddevice
         audio_data = sd.rec(int(DURATION * SAMPLE_RATE), samplerate=SAMPLE_RATE, channels=1, dtype='int16')
         sd.wait()  # Wait for the recording to finish
 
@@ -21,6 +19,12 @@ def listen_to_user():
 
         # Use the SpeechRecognition library to process the recorded audio file
         recognizer = sr.Recognizer()
+        
+        # Configure recognizer parameters for better speech recognition
+        recognizer.energy_threshold = 300  # Minimum energy level for considering speech
+        recognizer.dynamic_energy_threshold = True  # Automatically adjust energy threshold based on background noise
+        recognizer.pause_threshold = 1.0  # Seconds of pause allowed between words
+
         with sr.AudioFile(file_path) as source:
             audio = recognizer.record(source)  # Read the entire audio file
 
