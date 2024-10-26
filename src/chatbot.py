@@ -98,8 +98,10 @@ def get_intent(user_input):
 # Response generation function
 def generate_response(user_input):
     intent = get_intent(user_input)  # Call to get_intent to get the current intent
+    print(f"DEBUG: Intent for response generation: {intent}")  # Debugging line
     for item in conversation_data:
-        if intent in item['prompt'].lower():  # Adjust this logic as necessary
+        # Check if the intent matches the prompt (adjusted to match correctly)
+        if item['prompt'].lower() in user_input.lower():  # Match based on user input
             return item['response']
     return "I'm not sure how to respond to that."  # Default response if no match is found
 
