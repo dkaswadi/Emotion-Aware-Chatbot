@@ -1,7 +1,7 @@
 import json
 from difflib import get_close_matches
 
-# Load FAQ data from JSON
+# Load FAQ data from JSON file
 def load_faq_data(file_path="src/faq.json"):
     with open(file_path, 'r') as file:
         return json.load(file)
