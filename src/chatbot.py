@@ -84,7 +84,13 @@ def get_intent(user_input):
             break
 
         # Generate a response based on the input
-        bot_response = generate_response(user_input)
+def generate_response(user_input):
+    intent = get_intent(user_input)
+    for item in conversation_data:
+        if intent in item['prompt'].lower():
+            return item['response']
+    return "I'm not sure how to respond to that."
+
         print(f"Bot: {bot_response}")
         
         # Speak the generated response
