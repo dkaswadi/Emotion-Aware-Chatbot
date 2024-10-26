@@ -1,17 +1,9 @@
-import cv2
-from deepface import DeepFace
+from transformers import pipeline
 
-def detect_emotion():
-    cap = cv2.VideoCapture(0)
-    while True:
-        ret, frame = cap.read()
-        if not ret:
-            break
-        results = DeepFace.analyze(frame, actions=['emotion'])
-        emotion = results['dominant_emotion']
-        print("Detected Emotion:", emotion)
-        cv2.imshow('Emotion Detection', frame)
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
-    cap.release()
-    cv2.destroyAllWindows()
+# Load a pre-trained emotion classification model
+emotion_classifier = pipeline("text-classification", model="j-hartmann/emotion-english-distilroberta-base")
+
+def detect_emotion_from_text(text):
+    emotions = emotion_classifier(text)
+    print(f"Detected emotion: {emotions[0]['label']}")
+    return emotions[0]['label']
