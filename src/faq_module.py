@@ -12,13 +12,17 @@ if __name__ == "__main__":
     print(faq_data)  # This should print the loaded JSON data
 
 def find_answer(question):
-    # Check for exact matches first
-    if question in faq_data:
-        return faq_data[question]
+    question = question.lower()  # Normalize user input to lowercase
+
+    # Normalize keys to lowercase and check for exact matches first
+    normalized_faq = {key.lower(): value for key, value in faq_data.items()}
+    
+    if question in normalized_faq:
+        return normalized_faq[question]
 
     # Use get_close_matches to find similar questions if no exact match is found
-    close_match = get_close_matches(question, faq_data.keys(), n=1, cutoff=0.6)
+    close_match = get_close_matches(question, normalized_faq.keys(), n=1, cutoff=0.4)
     if close_match:
-        return faq_data[close_match[0]]
+        return normalized_faq[close_match[0]]
     else:
         return "I'm not sure about that, but I can try to help with something else!"
