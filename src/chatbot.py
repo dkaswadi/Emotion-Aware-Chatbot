@@ -4,7 +4,7 @@ import nltk  # Import nltk
 
 # Adding the `src` directory to the system path for module imports
 current_dir = os.path.dirname(os.path.abspath(__file__))
-src_path = os.path.join(current_dir, '..', 'src')
+src_path = os.path.join(current_dir, 'src')
 sys.path.append(src_path)
 
 from voice_to_text import listen_to_user
@@ -23,13 +23,19 @@ def chatbot_conversation():
         user_input = listen_to_user()
         print(f"Recognized input: {user_input}")
 
+        # Check if the recognizer did not understand the input
+        if user_input.lower() in ["sorry, i didn't catch that.", "sorry, i couldn't process your audio."]:
+            print("Chatbot: I didn't catch that. Could you please repeat?")
+            speak_response("I didn't catch that. Could you please repeat?")
+            continue
+
         # Define exit keywords
         exit_keywords = ["goodbye", "exit", "quit", "stop", "bye", "see you"]
 
         # Check if the user wants to end the conversation
         if any(keyword in user_input.lower() for keyword in exit_keywords):
-            print("Chatbot: Goodbye! Have a great day!")
-            speak_response("Goodbye! Have a great day!")
+            print("Chatbot: It was nice chatting with you! Take care!")
+            speak_response("It was nice chatting with you! Take care!")
             break
 
         detected_emotion = detect_emotion_from_text(user_input)
