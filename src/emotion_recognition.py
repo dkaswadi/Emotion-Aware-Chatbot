@@ -15,4 +15,3 @@ def detect_emotion():
             break
     cap.release()
     cv2.destroyAllWindows()
-""  
