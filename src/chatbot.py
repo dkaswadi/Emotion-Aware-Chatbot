@@ -1,5 +1,6 @@
 import sys
 import os
+import nltk  # Import nltk
 
 # Adding the `src` directory to the system path for module imports
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -10,6 +11,10 @@ from voice_to_text import listen_to_user
 from emotion_recognition import detect_emotion_from_text
 from nlp_module import generate_emotion_aware_response
 from text_to_speech import speak_response
+
+# Download necessary NLTK datasets (like stopwords and tokenizer)
+nltk.download('punkt')
+nltk.download('stopwords')
 
 def chatbot_conversation():
     user_input = listen_to_user()
