@@ -30,3 +30,18 @@ if __name__ == "__main__":
         # Generate a response from the chatbot
         bot_response = chat_with_bot(user_input)
         print(f"Bot: {bot_response}")
+# chatbot.py
+from nlp_model import get_intent
+from emotion_recognition import get_emotion
+from voice_module import listen, speak
+
+def main():
+    while True:
+        user_input = listen()
+        emotion = get_emotion()
+        intent = get_intent(user_input)
+        print(f"User said: {user_input}, Detected emotion: {emotion}, Intent: {intent}")
+        speak(f"I can sense that you are feeling {emotion}. Let's talk about it.")
+
+if __name__ == "__main__":
+    main()
