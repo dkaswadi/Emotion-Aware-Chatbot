@@ -10,10 +10,6 @@ conversation_data = load_conversational_data()  # Load the conversational datase
 
 print("DEBUG: Intent data and conversational data loaded successfully")
 
-# Initialize or fine-tune your models using this data
-
-print("DEBUG: Modules imported successfully")
-
 # Initialize the voice engine for TTS (Text-to-Speech)
 def speak(text):
     print("DEBUG: Entering speak() function")
