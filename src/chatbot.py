@@ -49,18 +49,20 @@ import speech_recognition as sr
 import pyttsx3
 from transformers import pipeline, AutoModelForCausalLM, AutoTokenizer
 
-# Initialize the voice engine for TTS
+# Initialize the voice engine for TTS (Text-to-Speech)
 def speak(text):
     engine = pyttsx3.init()
+    engine.setProperty('rate', 150)  # Adjust speech rate if needed
+    engine.setProperty('volume', 0.9)  # Set volume level between 0.0 and 1.0
     engine.say(text)
     engine.runAndWait()
 
-# Initialize the speech recognizer
+# Initialize the speech recognizer for Voice-to-Text
 def listen_to_speech():
     recognizer = sr.Recognizer()
     with sr.Microphone() as source:
         print("Listening...")
-        recognizer.adjust_for_ambient_noise(source)  # To reduce noise interference
+        recognizer.adjust_for_ambient_noise(source, duration=1)  # Optional: adjust for background noise
         audio = recognizer.listen(source)
 
         try:
