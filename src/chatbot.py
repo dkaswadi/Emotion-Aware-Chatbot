@@ -69,7 +69,7 @@ def chat_with_bot():
         print(f"You: {user_input}")
 
         # Identify the intent of the user input
-        intent = get_intent(user_input)  # Make sure to call this function here
+        intent = get_intent(user_input)  # Ensure this line is correctly placed
         print(f"DEBUG: Identified intent: {intent}")
 
         if intent == "exit":
@@ -83,6 +83,25 @@ def chat_with_bot():
         
         # Speak the generated response
         speak(bot_response)
+
+# Intent recognition function
+def get_intent(user_input):
+    user_input = user_input.lower()  # Normalize input to lowercase
+    print(f"DEBUG: User Input for Intent Recognition: {user_input}")  # Add this line
+    for index, row in intent_data.iterrows():
+        print(f"DEBUG: Checking intent: {row['text'].lower()}")  # Add this line
+        if row['text'].lower() in user_input:
+            print(f"DEBUG: Matched intent: {row['label']}")  # Add this line
+            return row['label']  # Return the corresponding label
+    return "default"  # Fallback if no intent is matched
+
+# Response generation function
+def generate_response(user_input):
+    intent = get_intent(user_input)  # Call to get_intent to get the current intent
+    for item in conversation_data:
+        if intent in item['prompt'].lower():  # Adjust this logic as necessary
+            return item['response']
+    return "I'm not sure how to respond to that."  # Default response if no match is found
 
 if __name__ == "__main__":
     print("DEBUG: Starting main()")
