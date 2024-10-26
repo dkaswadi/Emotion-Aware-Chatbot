@@ -1,5 +1,5 @@
 
-from transformers import pipeline, Conversation
+from transformers import pipeline
 
 # Load a pre-trained text generation model (like GPT-2)
 chatbot = pipeline("text-generation", model="gpt2")
