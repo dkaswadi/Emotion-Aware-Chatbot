@@ -2,7 +2,15 @@ import speech_recognition as sr
 import pyttsx3
 import sounddevice as sd
 import numpy as np
-from nlp_model import generate_response, get_intent
+from nlp_model import generate_response, get_intent, load_intent_data, load_conversational_data
+
+# Load datasets
+intent_data = load_intent_data()  # Load the intent dataset
+conversation_data = load_conversational_data()  # Load the conversational dataset
+
+print("DEBUG: Intent data and conversational data loaded successfully")
+
+# Initialize or fine-tune your models using this data
 
 print("DEBUG: Modules imported successfully")
 
