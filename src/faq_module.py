@@ -8,6 +8,9 @@ def load_faq_data(file_path="src/faq.json"):
 
 faq_data = load_faq_data()
 
+if __name__ == "__main__":
+    print(faq_data)  # This should print the loaded JSON data
+
 def find_answer(question):
     # Check for exact matches first
     if question in faq_data:
