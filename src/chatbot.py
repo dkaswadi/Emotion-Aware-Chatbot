@@ -89,8 +89,8 @@ def get_intent(user_input):
     user_input = user_input.lower()  # Normalize input to lowercase
     print(f"DEBUG: User Input for Intent Recognition: {user_input}")  # Add this line
     for index, row in intent_data.iterrows():
-        print(f"DEBUG: Checking intent: {row['text'].lower()}")  # Add this line
-        if row['text'].lower() in user_input:
+        print(f"DEBUG: Checking intent: {row['test'].lower()}")  # Adjusted to 'test'
+        if row['test'].lower() in user_input:
             print(f"DEBUG: Matched intent: {row['label']}")  # Add this line
             return row['label']  # Return the corresponding label
     return "default"  # Fallback if no intent is matched
