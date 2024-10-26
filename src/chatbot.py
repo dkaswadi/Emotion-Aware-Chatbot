@@ -19,7 +19,7 @@ def listen_to_user():
 user_input = listen_to_user()
 print(f"Recognized input: {user_input}")
 
-from transformers import pipeline
+from transformers import pipeline, Conversation
 
 # Load the pre-trained BERT model for text generation
 chatbot = pipeline("conversational")
