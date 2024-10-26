@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 # nlp_model.py
 from transformers import pipeline
 # Initialize a sentiment-analysis pipeline
@@ -36,4 +34,4 @@ if __name__ == "__main__":
         print(f"Detected Intent: {intent} (Confidence: {confidence:.2f})")
         print(f"Chatbot: {response}")
 ""  
->>>>>>> 0049a46e6507f2a46cb1840eaaffcba912877bc9
+0049a46e6507f2a46cb1840eaaffcba912877bc9
