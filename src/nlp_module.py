@@ -12,7 +12,6 @@ def generate_response(user_input):
     return response[0]["generated_text"]
 
 def generate_emotion_aware_response(user_input, detected_emotion):
-    # Define a fallback response in case no specific response matches
     fallback_response = "I'm not sure how to respond to that, but I'm here to listen."
 
     # Check if user input is a question and look for an answer in the FAQ
