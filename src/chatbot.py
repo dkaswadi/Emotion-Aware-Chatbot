@@ -2,6 +2,7 @@ import sys
 print(sys.path)  # To verify that your 'src' directory is in the path
 
 import os
+print("Files in src:", os.listdir(os.path.dirname(__file__)))
 
 # Adding the `src` directory to the system path for module imports
 current_dir = os.path.dirname(os.path.abspath(__file__))
