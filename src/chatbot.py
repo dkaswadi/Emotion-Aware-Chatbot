@@ -46,3 +46,8 @@ def chatbot_conversation():
 
 if __name__ == "__main__":
     chatbot_conversation()
+
+import sys
+import os
+import nltk
+from exposure_therapy import exposure_therapy_conversation  # Import the exposure therapy function
