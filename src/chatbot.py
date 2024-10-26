@@ -11,6 +11,7 @@ from voice_to_text import listen_to_user
 from emotion_recognition import detect_emotion_from_text
 from nlp_module import generate_emotion_aware_response
 from text_to_speech import speak_response
+from exposure_therapy import exposure_therapy_conversation  # Import the exposure therapy function
 
 # Download necessary NLTK datasets (like stopwords and tokenizer)
 nltk.download('punkt')
@@ -38,6 +39,13 @@ def chatbot_conversation():
             speak_response("It was nice chatting with you! Take care!")
             break
 
+        # Check for exposure therapy intent or command (example: "start exposure therapy")
+        if "exposure therapy" in user_input.lower():
+            print("Chatbot: Let's begin with some simple steps.")
+            speak_response("Let's begin with some simple steps.")
+            exposure_therapy_conversation(1)  # Start the exposure therapy conversation at level 1
+            continue
+
         detected_emotion = detect_emotion_from_text(user_input)
         response = generate_emotion_aware_response(user_input, detected_emotion)
         print(f"Chatbot response: {response}")
@@ -46,8 +54,3 @@ def chatbot_conversation():
 
 if __name__ == "__main__":
     chatbot_conversation()
-
-import sys
-import os
-import nltk
-from exposure_therapy import exposure_therapy_conversation  # Import the exposure therapy function
