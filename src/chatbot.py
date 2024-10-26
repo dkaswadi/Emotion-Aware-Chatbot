@@ -41,6 +41,7 @@ def listen_to_speech():
 
 # Function to get user input (text or voice)
 def get_user_input():
+    return input("You: ")
     choice = input("Would you like to type or speak? (type/speak): ").strip().lower()
 
     if choice == "speak":
