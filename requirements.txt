@@ -1,1 +1,10 @@
+transformers
+opencv-python
+deepface
+tensorflow
+Flask
+SpeechRecognition
+pyttsx3
+numpy
+pandas
  
