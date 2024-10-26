@@ -4,7 +4,7 @@ import speech_recognition as sr
 
 # Define recording parameters
 SAMPLE_RATE = 16000  # Sample rate for the microphone input
-DURATION = 10         # Maximum recording duration in seconds
+DURATION = 8         # Maximum recording duration in seconds
 
 def listen_to_user():
     print("I'm listening... Please speak.")
