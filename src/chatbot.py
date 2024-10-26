@@ -1,3 +1,9 @@
+import sys
+import os
+
+# Add the 'src' directory to the system path
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src'))
+
 from voice_to_text import listen_to_user
 from emotion_recognition import detect_emotion_from_text
 from nlp_module import generate_emotion_aware_response
