@@ -15,7 +15,7 @@ def generate_emotion_aware_response(user_input, detected_emotion):
     # Define a fallback response in case no specific response matches
     fallback_response = "I'm not sure how to respond to that, but I'm here to listen."
 
-    # Check for questions using intent detection and look for answers in the FAQ
+    # Check if user input is a question and look for an answer in the FAQ
     if detect_intent(user_input) == "question":
         answer = find_answer(user_input)
         return answer
