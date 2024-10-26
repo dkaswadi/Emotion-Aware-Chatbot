@@ -14,4 +14,18 @@ def listen():
 def speak(text):
     engine.say(text)
     engine.runAndWait()
+import pyttsx3
+
+def speak(text):
+    engine = pyttsx3.init()  # Initialize the TTS engine
+
+    # Set properties before speaking
+    engine.setProperty('rate', 150)  # Speed of speech (default is around 200)
+    engine.setProperty('volume', 0.9)  # Volume level (0.0 to 1.0)
+
+    engine.say(text)
+    engine.runAndWait()
+
+if __name__ == "__main__":
+    speak("Hello, how can I help you today?")
 "" 
