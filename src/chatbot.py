@@ -49,12 +49,15 @@ def get_user_input():
         return input("You: ")
 
 # Chatbot conversation loop with text and voice input options
+# Chatbot conversation loop with text and voice input options
 def chat_with_bot():
     while True:
         # Get user input via text or voice
         user_input = get_user_input()
+        
+        # If the input is empty, continue listening
         if not user_input:
-            continue  # If no input is detected, continue listening
+            continue
 
         print(f"You: {user_input}")
 
@@ -64,6 +67,7 @@ def chat_with_bot():
         # Handle the exit intent
         if intent == "exit":
             speak("Goodbye!")
+            print("Goodbye!")  # To print the exit message for clarity
             break
 
         # Generate a response based on the input
@@ -73,5 +77,3 @@ def chat_with_bot():
         # Speak the generated response
         speak(bot_response)
 
-if __name__ == "__main__":
-    chat_with_bot()
