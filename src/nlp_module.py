@@ -11,19 +11,33 @@ def generate_response(user_input):
     # Extract and return the generated response text
     return response[0]["generated_text"]
 
-def generate_emotion_aware_response(user_input, detected_emotion):
-    processed_input = preprocess_input(user_input)
-    intent = detect_intent(processed_input)
+import random
 
-    if intent == "greeting":
-        response = "Hello there! How can I help you today?"
-    elif detected_emotion in ["joy", "happy"]:
-        response = "I'm so glad you're happy! What made your day so great?"
-    elif detected_emotion in ["sadness", "sad"]:
-        response = "I'm sorry you're feeling sad. Do you want to talk about it?"
-    elif detected_emotion in ["anger", "angry"]:
-        response = "It's okay to feel angry sometimes. I'm here to listen if you want to vent."
+def generate_emotion_aware_response(user_input, detected_emotion):
+    greeting_responses = [
+        "Hello there! How can I help you today?",
+        "Hi! What would you like to talk about?",
+        "Hey! How's it going?"
+    ]
+    happy_responses = [
+        "I'm so glad you're happy! What made your day so great?",
+        "That sounds amazing! Keep smiling!",
+        "Yay! Tell me more about it."
+    ]
+    sad_responses = [
+        "I'm sorry you're feeling sad. Do you want to talk about it?",
+        "It's okay to feel sad sometimes. I'm here to listen.",
+        "I'm here for you. Take your time."
+    ]
+
+    if detect_intent(user_input) == "greeting":
+        response = random.choice(greeting_responses)
+    elif detected_emotion == "joy":
+        response = random.choice(happy_responses)
+    elif detected_emotion == "sadness":
+        response = random.choice(sad_responses)
     else:
         response = generate_response(user_input)
     
     return response
+
