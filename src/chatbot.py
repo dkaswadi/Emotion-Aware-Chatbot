@@ -17,6 +17,18 @@ from exposure_therapy import exposure_therapy_conversation  # Import the exposur
 nltk.download('punkt')
 nltk.download('stopwords')
 
+# Define trigger phrases for exposure therapy
+exposure_therapy_triggers = [
+    "start exposure therapy",
+    "guide me through an anxiety exercise",
+    "help me face my fear",
+    "i’m feeling anxious, can you help",
+    "begin exposure therapy",
+    "i’m scared of meeting new people",
+    "i feel nervous about making friends",
+    "i’m afraid of going to school"
+]
+
 def chatbot_conversation():
     print("Chatbot is running. Say 'goodbye', 'exit', or 'stop' to end the conversation.")
     
@@ -39,8 +51,8 @@ def chatbot_conversation():
             speak_response("It was nice chatting with you! Take care!")
             break
 
-        # Check for exposure therapy intent or command (example: "start exposure therapy")
-        if "exposure therapy" in user_input.lower():
+        # Check if the user input contains any exposure therapy trigger phrases
+        if any(phrase in user_input.lower() for phrase in exposure_therapy_triggers):
             print("Chatbot: Let's begin with some simple steps.")
             speak_response("Let's begin with some simple steps.")
             exposure_therapy_conversation(1)  # Start the exposure therapy conversation at level 1
