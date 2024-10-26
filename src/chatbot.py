@@ -69,7 +69,13 @@ def chat_with_bot():
         print(f"You: {user_input}")
 
         # Identify the intent of the user input
-        intent = get_intent(user_input)
+def get_intent(user_input):
+    user_input = user_input.lower()
+    for index, row in intent_data.iterrows():
+        if row['text'].lower() in user_input:
+            return row['label']  # Return the corresponding label
+    return "default"  # Fallback if no intent is matched
+
         print(f"DEBUG: Identified intent: {intent}")
 
         if intent == "exit":
